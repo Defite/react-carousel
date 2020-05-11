@@ -34,6 +34,7 @@ class Carousel extends Component {
     clickToChange: PropTypes.bool,
     centered: PropTypes.bool,
     infinite: PropTypes.bool,
+    numberOfInfiniteClones: PropTypes.bool,
     rtl: PropTypes.bool,
     draggable: PropTypes.bool,
     keepDirectionWhenDragging: PropTypes.bool,
@@ -54,6 +55,7 @@ class Carousel extends Component {
       clickToChange: PropTypes.bool,
       centered: PropTypes.bool,
       infinite: PropTypes.bool,
+      numberOfInfiniteClones: PropTypes.bool,
       draggable: PropTypes.bool,
       keepDirectionWhenDragging: PropTypes.bool,
       animationSpeed: PropTypes.number,
@@ -156,8 +158,8 @@ class Carousel extends Component {
     const additionalClones = this.getNeededAdditionalClones();
     return additionalClones > 0 ? additionalClones : 0;
   };
-  getClonesLeft = () => config.numberOfInfiniteClones + this.getAdditionalClonesLeft();
-  getClonesRight = () => config.numberOfInfiniteClones + this.getAdditionalClonesRight();
+  getClonesLeft = () => this.props.numberOfInfiniteClones ? this.props.numberOfInfiniteClones : config.numberOfInfiniteClones + this.getAdditionalClonesLeft();
+  getClonesRight = () => this.props.numberOfInfiniteClones ? this.props.numberOfInfiniteClones : config.numberOfInfiniteClones + this.getAdditionalClonesRight();
 
   getAdditionalClonesOffset = () =>
     -this.getChildren().length * this.getCarouselElementWidth() * this.getAdditionalClonesLeft();
